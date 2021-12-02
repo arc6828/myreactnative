@@ -1,12 +1,11 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Welcome from './screens/Welcome';
-import Ex1 from './screens/week2/Ex1';
-import Ex2 from './screens/week2/Ex2';
-
+import { StatusBar } from "expo-status-bar";
+import React from "react";
+import { StyleSheet, Text, View, TextInput, Button, Image } from "react-native";
+import Welcome from "./screens/Welcome";
+import Ex1 from "./screens/week2/Ex1";
+import Ex2 from "./screens/week2/Ex2";
+import { FontAwesome } from "@expo/vector-icons";
+import Travel from "./screens/week3/Travel";
 export default function App() {
-  return (
-    <Ex2 />
-  );
+  return <Travel />;
 }
