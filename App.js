@@ -6,6 +6,7 @@ import Ex1 from "./screens/week2/Ex1";
 import Ex2 from "./screens/week2/Ex2";
 import { FontAwesome } from "@expo/vector-icons";
 import Travel from "./screens/week3/Travel";
+import Resort from "./screens/week4/Resort";
 export default function App() {
-  return <Travel />;
+  return <Resort />;
 }

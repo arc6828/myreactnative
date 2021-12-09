@@ -7,14 +7,11 @@ import Menu from "../../components/week3/Menu";
 import MyIcon from "../../components/week3/MyIcon";
 import Signup from "../../components/week3/Signup";
 
-export default function Travel() {
+export default function Resort() {
   return (
     <ScrollView>
       <View style={{ flex: 1, paddingTop: 50 }}>
-        <Menu />
-        <Card />
-        <Hotel />
-        <Signup />
+        <Text>Quiz of Week 4</Text>
       </View>
     </ScrollView>
   );
