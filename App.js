@@ -7,6 +7,8 @@ import Ex2 from "./screens/week2/Ex2";
 import { FontAwesome } from "@expo/vector-icons";
 import Travel from "./screens/week3/Travel";
 import Resort from "./screens/week4/Resort";
+import Health from "./screens/week5/Health";
+
 export default function App() {
-  return <Resort />;
+  return <Health  />;
 }
