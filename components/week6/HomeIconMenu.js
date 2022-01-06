@@ -1,9 +1,11 @@
+import { useNavigation } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { View, TextInput, } from "react-native";
 import MyIcon from "../week3/MyIcon";
 
 export default function HomeIconMenu() {
+    const navigation = useNavigation();
     return (
         <View style={{ marginHorizontal: 20, marginTop: -50, padding: 20, borderWidth: 1, borderColor: 'gray', borderRadius: 20, backgroundColor: 'white' }}>
             {/* View ก้อนที่ 1 */}
@@ -12,14 +14,14 @@ export default function HomeIconMenu() {
             </View>
             {/* View ก้อนที่ 2 */}
             <View style={{ flexDirection: "row", marginTop: 10 }}>
-                <MyIcon title="xxx" name="question" size={30} color="orange" />
-                <MyIcon title="xxx" name="question" size={30} color="orange" />
-                <MyIcon title="xxx" name="question" size={30} color="orange" />
-                <MyIcon title="xxx" name="question" size={30} color="orange" />
+                <MyIcon title="Flex" name="th" size={30} color="orange" onPress={ ()=>{ navigation.navigate("Ex1") }} />
+                <MyIcon title="Travel" name="plane" size={30} color="orange" onPress={ ()=>{ navigation.navigate("Travel") }} />
+                <MyIcon title="Resort" name="bed" size={30} color="orange" onPress={ ()=>{ navigation.navigate("Resort") }} />
+                <MyIcon title="Health" name="heart" size={30} color="orange"onPress={ ()=>{ navigation.navigate("Health") }} />
             </View>
             {/* View ก้อนที่ 3 */}
             <View style={{ flexDirection: "row", marginTop: 10 }}>
-                <MyIcon title="xxx" name="question" size={30} color="orange" />
+                <MyIcon title="Pokemon" name="bolt" size={30} color="orange" onPress={ ()=>{ navigation.navigate("PokemonTab") }} />
                 <MyIcon title="xxx" name="question" size={30} color="orange" />
                 <MyIcon title="xxx" name="question" size={30} color="orange" />
                 <MyIcon title="More" name="ellipsis-h" size={30} color="orange" />
