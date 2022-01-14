@@ -10,7 +10,7 @@ export default function Event(props) {
         try {
             let promise = await fetch('https://raw.githubusercontent.com/arc6828/myreactnative/master/assets/json/events.json');
             let data = await promise.json();
-            console.log("Load Data : ", data);
+            // console.log("Load Data : ", data);
             //SET STATE
             setOnlineTours(data);
         } catch (error) {
@@ -36,7 +36,7 @@ export default function Event(props) {
                 data={onlineTours}
                 renderItem={
                     ({ item, index }) => {
-                        console.log(item);
+                        // console.log(item);
                         return (
                             <View style={{ marginRight: 10 }} >
                                 <Image style={{ width: Dimensions.get("screen").width / 1.8, height: 150, borderTopLeftRadius : 10, borderTopRightRadius : 10 }} source={{ uri: item.uri }} />

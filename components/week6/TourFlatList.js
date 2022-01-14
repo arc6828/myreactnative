@@ -16,7 +16,7 @@ export default function TourFlatList(props) {
         try {
             let promise = await fetch('https://raw.githubusercontent.com/arc6828/myreactnative/master/assets/json/trips.json');
             let data = await promise.json();
-            console.log("Load Data : ", data);
+            // console.log("Load Data : ", data);
             //SET STATE
             setOnlineTours(data);
         } catch (error) {
@@ -42,7 +42,7 @@ export default function TourFlatList(props) {
                 data={onlineTours}
                 renderItem={
                     ({ item, index }) => {
-                        console.log(item);
+                        // console.log(item);
                         return (
                             <View style={{ marginRight: 10 }} >
                                 <Image style={{ width: Dimensions.get("screen").width / 2.0 - 25, height: 150, borderRadius: 10 }} source={{ uri: item.uri }} />
