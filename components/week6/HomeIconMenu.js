@@ -22,7 +22,7 @@ export default function HomeIconMenu() {
             {/* View ก้อนที่ 3 */}
             <View style={{ flexDirection: "row", marginTop: 10 }}>
                 <MyIcon title="Pokemon" name="bolt" size={30} color="orange" onPress={ ()=>{ navigation.navigate("PokemonTab") }} />
-                <MyIcon title="xxx" name="question" size={30} color="orange" />
+                <MyIcon title="Book Store" name="cubes" size={30} color="orange" onPress={ ()=>{ navigation.navigate("Book") }} />
                 <MyIcon title="xxx" name="question" size={30} color="orange" />
                 <MyIcon title="More" name="ellipsis-h" size={30} color="orange" />
             </View>
