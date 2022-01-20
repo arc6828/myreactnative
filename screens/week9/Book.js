@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
@@ -13,17 +13,26 @@ export default function Book() {
     const navigation = useNavigation();
     const readProducts = async () => {
         try {
-          setRefresh(true);
-          const string_value = await AsyncStorage.getItem("@products");
-          let products = string_value != null ? JSON.parse(string_value) : [];
-          setProducts(products);
-          setRefresh(false);
+            setRefresh(true);
+            const string_value = await AsyncStorage.getItem("@products");
+            let products = string_value != null ? JSON.parse(string_value) : [];
+            setProducts(products);
+            setRefresh(false);
         } catch (e) {
-          // error reading value
+            // error reading value
         }
-      };
-      useEffect(() => { readProducts(); }, []);
-      const [refresh, setRefresh] = useState(false)
+    };
+    // useEffect(() => { readProducts(); }, []);
+    // useLayoutEffect(() => { readProducts(); }, [navigation]);
+    useEffect(() => {
+        // WHEN MOUNT AND UPDATE
+        const unsubscribe = navigation.addListener('focus', () => {
+            readProducts();
+        });
+        // WHEN UNMOUNT
+        return unsubscribe;
+    }, [navigation]);
+    const [refresh, setRefresh] = useState(false)
 
 
     return (
