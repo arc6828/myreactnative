@@ -1,6 +1,11 @@
-const url_login = "http://192.168.1.157/mylaravel8/public/api/sanctum/token";
-const url_register =  "http://192.168.1.157/mylaravel8/public/api/sanctum/token/register";
-const url_user = "http://192.168.1.157/mylaravel8/public/api/user";
+// const url_login = "http://192.168.1.157/mylaravel8/public/api/sanctum/token";
+// const url_register =  "http://192.168.1.157/mylaravel8/public/api/sanctum/token/register";
+// const url_user = "http://192.168.1.157/mylaravel8/public/api/user";
+import { APP_URL } from "@env";
+// const url_endpoint = APP_URL+"/api/book";
+const url_login = APP_URL+"/api/sanctum/token";
+const url_register =  APP_URL+"/api/sanctum/token/register";
+const url_user = APP_URL+"/api/user";
 
 const login = async (item) => {
   try {
