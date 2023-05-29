@@ -1,5 +1,58 @@
 # EP 02 : JSX and Flexbox CSS
 
+## JSX
+JSX (JavaScript XML) is a syntax extension for JavaScript that is commonly used in React and React Native applications. It allows you to write HTML-like code within JavaScript, making it easier to define the structure and appearance of user interfaces. JSX is a fundamental part of React Native development. Here's an overview of JSX in React Native:
+
+**JSX Syntax**
+
+JSX resembles HTML syntax but is used within JavaScript code. It allows you to write component structures and define their properties. Here's an example of JSX code in a React Native component:
+
+```javascript
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+
+const App = () => {
+  return (
+    <View style={styles.container}>
+      <Text style={styles.text}>Hello, React Native!</Text>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  text: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+});
+
+export default App;
+```
+
+**JSX Features**
+
+- Component Rendering: JSX allows you to define the structure of your components by using HTML-like tags. Components can be nested within each other to create complex UI hierarchies.
+- Embedding JavaScript Expressions: JSX supports embedding JavaScript expressions using curly braces {}. This allows you to dynamically generate content or access variables within JSX elements.
+- Component Props: JSX allows you to pass properties (props) to components using HTML attributes. These props can be accessed within the component and used to customize its behavior and appearance.
+- Style Declarations: JSX supports inline style declarations using JavaScript objects. You can define styles and apply them directly to JSX elements using the style attribute.
+- Conditional Rendering and Loops: JSX allows you to use JavaScript expressions within curly braces to conditionally render elements or create loops to generate repetitive elements.
+- Event Handling: JSX enables you to attach event handlers to elements using familiar HTML attributes such as onClick, onPress, etc. These event handlers can trigger actions or update component state.
+
+**JSX Transformation**
+
+Under the hood, JSX code is transformed into regular JavaScript function calls. Tools like Babel are commonly used to transpile JSX into JavaScript that can be executed by the browser or mobile platform.
+
+When working with React Native, the JSX code is transformed into React Native-specific function calls that create and update native UI components on the device.
+
+JSX is an essential part of React Native development, as it provides a concise and declarative way to define user interfaces. It combines the power of JavaScript with the expressiveness of HTML-like syntax, making it easier to understand and maintain complex UI structures.
+
+
+## Flexbox
 Flexbox is a CSS layout module that provides a flexible way to arrange and align elements within a container. It allows you to create responsive and dynamic layouts that adapt to different screen sizes and orientations. The flex container holds the flex items and applies the flexbox layout. The flex items are the child elements of the flex container that participate in the flex layout. Here's a breakdown of the flex container and flex item properties :
 
 <figure class="image">
