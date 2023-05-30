@@ -167,19 +167,99 @@ You can find detailed information, examples, and tutorials on flexbox in the off
     - **center** Align children of a container in the center of the container's main axis.
     - **space-between** Evenly space of children across the container's main axis, distributing remaining space between the children.
     - **space-around** Evenly space of children across the container's main axis, distributing remaining space around the children. Compared to space-between using space-around will result in space being distributed to the beginning of the first child and end of the last child.
+
+```jsx
+<View style={{ flex: 1, flexDirection: 'column', justifyContent: 'space-between', }}>
+    <View style={{
+        width: 50, height: 50, 
+        backgroundColor: 'powderblue'}} />
+    <View style={{
+        width: 50, height: 50, 
+        backgroundColor: 'skyblue'}} />
+    <View style={{
+        width: 50, height: 50, 
+        backgroundColor: 'steelblue'}} />
+</View>
+```
+<figure class="image">
+    <img src="./images/justifyContent-example.png" alt="">
+    <figcaption>Fig x : justifyContent  space-between</figcaption>
+</figure>
+
+<figure class="image">
+    <img src="./images/justifyContent.png" alt="">
+    <figcaption>Fig x : justifyContent</figcaption>
+</figure>
+
 - **alignItems** describes how to align children along the cross axis of their container. Align items is very similar to justifyContent but instead of applying to the main axis, alignItems applies to the cross axis.
     - **stretch** (default value) Stretch children of a container to match the height of the container's cross axis.
     - **flex-start** Align children of a container to the start of the container's cross axis.
     - **flex-end** Align children of a container to the end of the container's cross axis.
     - **center** Align children of a container in the center of the container's cross axis.
     - **baseline** Align children of a container along a common baseline. Individual children can be set to be the reference baseline for their parents.
+
+```jsx
+<View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'stretch', }}>
+    <View style={{
+        width: 50, height: 50, 
+        backgroundColor: 'powderblue'}} />
+    <View style={{
+        width: 50, height: 50, 
+        backgroundColor: 'skyblue'}} />
+    <View style={{
+        width: 50, height: 50, 
+        backgroundColor: 'steelblue'}} />
+</View>
+```
+<figure class="image">
+    <img src="./images/alignItems-example.png" alt="">
+    <figcaption>Fig x : alignItems  stretch</figcaption>
+</figure>
+
+<figure class="image">
+    <img src="./images/alignItems.png" alt="">
+    <figcaption>Fig x : alignItems</figcaption>
+</figure>
+
 - **alignSelf** has the same options and effect as alignItems but instead of affecting the children within a container, you can apply this property to a single child to change its alignment within its parent. alignSelf overrides any option set by the parent with aligItems.
     - **stretch** (default value) Stretch children of a container to match the height of the container's cross axis.
     - **flex-start** Align children of a container to the start of the container's cross axis.
     - **flex-end** Align children of a container to the end of the container's cross axis.
     - **center** Align children of a container in the center of the container's cross axis.
     - **baseline** Align children of a container along a common baseline. Individual children can be set to be the reference baseline for their parents.
+
+
+```jsx
+<View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'stretch', }}>
+    <View style={{
+        width: 50, height: 50, 
+        backgroundColor: 'powderblue',
+        alignSelf: 'flex-end' }} />
+    <View style={{
+        width: 50, height: 50, 
+        backgroundColor: 'skyblue'}} />
+    <View style={{
+        width: 50, height: 50, 
+        backgroundColor: 'steelblue'}} />
+</View>
+```
+<figure class="image">
+    <img src="./images/alignSelf-example.png" alt="">
+    <figcaption>Fig x : alignSelf  flex-end</figcaption>
+</figure>
+
+<figure class="image">
+    <img src="./images/alignSelf.png" alt="">
+    <figcaption>Fig x : alignSelf</figcaption>
+</figure>
+
 - **flexWrap** is set on containers and controls what happens when children overflow the size of the container along the main axis. By default children are forced into a single line (which can shrink elements). If wrapping is allowed items are wrapped into multiple lines along the main axis if needed. When wrapping lines alignContent can be used to specify how the lines are placed in the container.
+
+<figure class="image">
+    <img src="./images/flexWrap.png" alt="">
+    <figcaption>Fig x : flexWrap</figcaption>
+</figure>
+
 - **alignContent** alignContent defines the distribution of lines along the cross-axis. This only has effect when items are wrapped to multiple lines using flexWrap.
     - **flex-start** (default value) Align wrapped lines to the start of the container's cross axis.
     - **flex-end Align** wrapped lines to the end of the container's cross axis.
@@ -188,15 +268,27 @@ You can find detailed information, examples, and tutorials on flexbox in the off
     - **space-between** Evenly space wrapped lines across the container's main axis, distributing remaining space between the lines.
     - **space-around** Evenly space wrapped lines across the container's main axis, distributing remaining space around the lines. Compared to space between using space around will result in space being distributed to the begining of the first lines and end of the last line.
 
+<figure class="image">
+    <img src="./images/alignContent.png" alt="">
+    <figcaption>Fig x : alignContent</figcaption>
+</figure>
+
+
 ### Other CSS
 - **width and height** The width property in Yoga specifies the width of the element's content area. Similarly height property specifies the height of the element's content area. Both width and height can take following values:
     - **auto** Is the default Value, React Native calculates the width/height for the element based on its content, whether that is other children, text, or an image.
     - **pixels** Defines the width/height in absolute pixels. Depending on other styles set on the component, this may or may not be the final dimension of the node.
     - **percentage** Defines the width or height in percentage of its parent's width or height respectively.
 - **padding and margin**
+    - **pixels** Defines the space in absolute pixels. Depending on other styles set on the component. Padding define the space between container and its items. Margin define the space between an item and its siblings.
 - **absolute and relative** The position type of an element defines how it is positioned within its parent.
     - **relative** (default value) By default an element is positioned relatively. This means an element is positioned according to the normal flow of the layout, and then offset relative to that position based on the values of top, right, bottom, and left. The offset does not affect the position of any sibling or parent elements.
     - **absolute** When positioned absolutely an element doesn't take part in the normal layout flow. It is instead laid out independent of its siblings. The position is determined based on the top, right, bottom, and left values.
+
+<figure class="image">
+    <img src="./images/position.png" alt="">
+    <figcaption>Fig x : position</figcaption>
+</figure>
 
 ## Game with Flexbox froggy
 
@@ -213,6 +305,156 @@ You can find detailed information, examples, and tutorials on flexbox in the off
     <img src="./images/flexbox-exercises.png" alt="">
     <figcaption>Fig x : flexbox exercises</figcaption>
 </figure>
+
+**Intruction**
+Finish all exercises Ex1 - Ex12 by create new 12 screen and write some code to visual each screen like demonstatration.
+
+- **Ex1 : Horizontal Stretch**
+    - background-color: "#50E3C2"
+    - height: "100" 
+
+This is a flexbox which spans the height of the screen. The layout starts at the top of the screen.
+
+<figure class="image">
+    <img src="./images/ex1.png" alt="">
+    <figcaption>Fig x : Exercise 1</figcaption>
+</figure>
+
+- **Ex2 : Vertical Stretch**
+    - background-color: "#50E3C2"
+    - width: "100" 
+
+This is a flexbox which spans the width of the screen. The layout starts at the top of the screen.
+
+<figure class="image">
+    <img src="./images/ex2.png" alt="">
+    <figcaption>Fig x : Exercise 2</figcaption>
+</figure>
+
+- **Ex3 : Horizontal Stacking Items**
+    - background-color : "#50E3C2", "#4A90E2", "#9013FE"
+    - square length : "100" (width / height)
+    - Try using - flexDirection : "row"
+
+Here, we focus on stacking items in a row at the top of the screen. Each of these items is a square.
+
+<figure class="image">
+    <img src="./images/ex3.png" alt="">
+    <figcaption>Fig x : Exercise 3</figcaption>
+</figure>
+
+- **Ex4 : Vertical Stacking Items**
+    - background-color : "#50E3C2", "#4A90E2", "#9013FE"
+    - square length : "100" (width / height)
+    - Try using - flexDirection : "column"
+
+This is a similar task, except the items are stacked in a column.
+
+<figure class="image">
+    <img src="./images/ex4.png" alt="">
+    <figcaption>Fig x : Exercise 4</figcaption>
+</figure>
+
+- **Ex5 : Horizontal Center Stack**
+    - background-color : "#50E3C2", "#4A90E2", "#9013FE"
+    - square length : "100" (width / height)
+    - Try using - flexDirection : "column"
+
+This layout follows the same style as the ones above. If you like, reuse the same objects and simply change the necessary parameters.
+
+Try to align the row of stacked objects in the center of the screen.
+
+Note: We want the closing container for the objects to align to the center, not the individual object — align the view the objects are wrapped in to the center.
+
+
+<figure class="image">
+    <img src="./images/ex5.png" alt="">
+    <figcaption>Fig x : Exercise 5</figcaption>
+</figure>
+
+-**Ex6 : Vertical Center Stack**
+
+Now, do the same for the vertical stack of objects.
+<figure class="image">
+    <img src="./images/ex6.png" alt="">
+    <figcaption>Fig x : Exercise 6</figcaption>
+</figure>
+
+- **Ex7 : Bottom Align Vertical Stack**
+
+Again, reusing the same components as before, change the parameters to align the stack to the bottom left of the screen.
+<figure class="image">
+    <img src="./images/ex7.png" alt="">
+    <figcaption>Fig x : Exercise 7</figcaption>
+</figure> 
+
+- **Ex8 : Space Between Horizontal**
+
+One of the most useful things to know in layouts is spacing. This is especially useful when making tab bars or nav bars. These two layout tasks should give you a good idea of what the spacing does:
+
+This example requires you to use the space-between parameter. Like before, the same objects may be reused.
+
+Note: the space-between would be on the horizontal axis. I’ll leave it to you to decide how to accomplish that.
+
+Looks like you’re getting the hang of it!
+How about we take it up a notch? Relax, take it one step at a time — it’s all about combining the skills you’ve just honed, layering the objects one by one.
+<figure class="image">
+    <img src="./images/ex8.png" alt="">
+    <figcaption>Fig x : Exercise 8</figcaption>
+</figure> 
+
+- **Ex9 : Space Between and Around**
+
+In this task the objects are layered using both space-between and space-around.
+
+Try to analyze the layout first to determine which objects are space-between and which are space-around.
+
+Note: if you want to reuse the objects from before (recommended) then use the vertical stack. After, see how you can adjust the parameters to make one column of the layout. Finally, try replicating that entire view to create the other two columns.
+
+<figure class="image">
+    <img src="./images/ex9.png" alt="">
+    <figcaption>Fig x : Exercise 9</figcaption>
+</figure> 
+
+- **Ex10**
+    - background-color : "4A90E2"
+    - flex : 1
+
+Patience, young grasshopper. Our training is almost to an end. The last thing to master now is flex. This is very useful when you want to portion items on your screen. In this way, your app becomes dynamic and can scale to work on multiple screen sizes. Try to use flex to accomplish these layouts:
+
+This layout uses a flex of 1 to fill the entire screen, and therefore the flexDirection does not matter.
+
+<figure class="image">
+    <img src="./images/ex10.png" alt="">
+    <figcaption>Fig x : Exercise 10</figcaption>
+</figure> 
+
+
+- **Ex11**
+    - background-color : "4A90E2", "50E3C2"
+
+This layout splits the screen into two views using flex. 
+
+Note: you’ll need to specify flexDirection here.
+
+<figure class="image">
+    <img src="./images/ex11.png" alt="">
+    <figcaption>Fig x : Exercise 11</figcaption>
+</figure> 
+
+- **Ex12**
+
+Look, it’s a rainbow!
+
+Try to use flex to portion the screen into three views.
+
+Note: this layout should incorporate most of the skills you’ve gained thus far.
+
+
+<figure class="image">
+    <img src="./images/ex12.png" alt="">
+    <figcaption>Fig x : Exercise 12</figcaption>
+</figure> 
 
 
 ## Reference
