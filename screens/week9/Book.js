@@ -13,14 +13,28 @@ export default function Book() {
         { id: 3, name: "พัฒนา Web Apps ด้วย React Bootstrap + Redux", price: 349, image: "https://raw.githubusercontent.com/arc6828/myreactnative/master/assets/week9/book-3.jpg", },
     ]);
     const navigation = useNavigation();
+    //TOP RIGHT MENU
+    useLayoutEffect(() => {
+        navigation.setOptions({
+            headerRight: () => (
+                <TouchableOpacity
+                    style={{ paddingRight: 20 }}
+                    onPress={() => { navigation.navigate("TodoList"); }}
+                >
+                    <Text>Quiz</Text>
+                </TouchableOpacity>
+            ),
+        });
+    }, [navigation]);
+
     const loadBooks = async () => {
         setRefresh(true);
         // let products = await BookStorage.readItems();
         let products = await BookLaravel.getItems();
         setProducts(products);
         setRefresh(false);
-      };
-    
+    };
+
     useEffect(() => {
         // WHEN MOUNT AND UPDATE
         const unsubscribe = navigation.addListener("focus", () => {
