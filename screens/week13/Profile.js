@@ -11,9 +11,13 @@ export default function Profile() {
     const { userToken, setUserToken } = useContext(AuthContext);
     const [user, setUser] = useState(null);
 
-    useEffect(async () => {
+    const onLoad = async ()=> {
         let u = await AuthLaravel.getUser(userToken);
         setUser(u);
+    };
+
+    useEffect(async () => {
+        onLoad();
     }, []);
 
     const onLogout = async () => {

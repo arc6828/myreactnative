@@ -3,7 +3,12 @@ import { Image, Modal, Text, TouchableOpacity, View } from "react-native";
 import File from "../../helpers/File";
 
 export default function ImagePickerModal(props) {
-    useEffect(async () => { await File.requestPermission(); }, []);
+    const onLoad = async()=>{
+        await File.requestPermission();
+    };
+    useEffect(() => {  
+        onLoad();
+    }, []);
     const pickImage = async (mode) => {
         let result = null;
         switch (mode) {

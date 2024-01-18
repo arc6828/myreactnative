@@ -7,9 +7,13 @@ const AuthContextProvider = (props) => {
     const [user, setUser] = useState({});
     const [loading, setLoading] = useState(false);
 
-    useEffect(async()=>{
+    const onLoad = async()=>{
         let tk = await UserTokenStorage.readItem();
         setUserToken(tk);
+    };
+
+    useEffect(()=>{
+        onLoad();
       },[]);
     
 

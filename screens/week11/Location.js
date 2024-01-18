@@ -9,12 +9,16 @@ export default function Location() {
     const [location, setLocation] = useState(null);
     const [recordLocation, setRecordLocation] = useState(false);
 
-    useEffect(async () => {
+    const onLoad = async ()=> {
         console.log("ENTER SCREEN");
         let loc = await GPS.getLocation();
         if (loc) {
             setLocation(loc);
         }
+    };
+
+    useEffect(() => {
+        onLoad();
     }, []);
 
     //TOP RIGHT MENU

@@ -16,27 +16,31 @@ export default function BookForm() {
   const { item } = route.params;
   const navigation = useNavigation();
   useLayoutEffect(() => { navigation.setOptions({ title: item ? "edit" : "create" }); }, [navigation]);
-  useEffect(async() => {
+
+  const onLoad = async()=>{
     if (item) {
-      // let book = await BookStorage.readItemDetail(item);
-      let book = await BookLaravel.getItemDetail(item);      
+      let book = await BookStorage.readItemDetail(item);
+      // let book = await BookLaravel.getItemDetail(item);      
       setId(book.id);
       setName(book.name);
       setPrice(book.price.toString());
       setImage(book.image);
     }
+  };
+  useEffect(() => {
+    onLoad();
   }, []);
 
   const saveBook = async () => {
     //A NEW ITEM
     let new_data = { id: id, name: name, price: price, image: image };
     //SAVE
-    // await BookStorage.writeItem(new_data);
-    if(item){
-      await BookLaravel.updateItem(new_data);
-    }else{
-      await BookLaravel.storeItem(new_data);
-    }
+    await BookStorage.writeItem(new_data);
+    // if(item){
+    //   await BookLaravel.updateItem(new_data);
+    // }else{
+    //   await BookLaravel.storeItem(new_data);
+    // }
 
     //REDIRECT TO
     navigation.navigate("Book");

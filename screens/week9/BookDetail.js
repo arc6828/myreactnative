@@ -33,10 +33,14 @@ export default function BookDetail() {
         navigation.navigate("Book");
     };
 
-    useEffect(async () => {
+    const onLoad = async()=>{
         // let b = await BookStorage.readItemDetail(item);
         let b = await BookLaravel.getItemDetail(item);
         setBook(b);
+      };
+
+    useEffect(() => {
+        onLoad();
     }, []);
 
 
