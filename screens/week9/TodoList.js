@@ -65,12 +65,9 @@ export default function TodoList() {
         let index = t.findIndex((item => item.id == id));
         //SET INVERSE VALUE BOOLEAN
         t[index].completed = ! t[index].completed;
-        setTodos(t);
-
+        setTodos(t);        
         
-        
-        // WRITE ITEM TO STORAGE - WRITE CODE HERE
-        
+        // WRITE ITEM TO STORAGE - WRITE CODE HERE        
 
     };   
     const onDelete = (id) => {   
