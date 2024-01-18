@@ -18,12 +18,12 @@ export default function TodoList() {
     console.log("TODOS:", todos);
 
     const onLoad = async () => {
-        // READ ITEM FROM STORAGE
+        // READ ITEMS FROM STORAGE
         let data = await TodoStorage.readItems();
         // console.log("data:", data);
 
-        // SET STATE
-        setTodos(data);
+        // SET STATE - WRITE CODE HERE
+
     };
 
     useEffect(()=>{
@@ -43,8 +43,8 @@ export default function TodoList() {
         //UPDATE STATE
         setTodos(t);               
 
-        // WRITE ITEM TO STORAGE
-        TodoStorage.writeItem(new_data);
+        // WRITE ITEM TO STORAGE - WRITE CODE HERE
+        
     };     
     const onUpdate = (new_title, id) => {   
         //CLONE ARRAY FIRST
@@ -57,8 +57,8 @@ export default function TodoList() {
         //UPDATE STATE
         setTodos(t);
         
-        // WRITE ITEM TO STORAGE
-        TodoStorage.writeItem(t[index]);
+        // WRITE ITEM TO STORAGE - WRITE CODE HERE
+        
     }; 
     const onCheck = (id) => {
         let t = [...todos];
@@ -69,8 +69,8 @@ export default function TodoList() {
 
         
         
-        // WRITE ITEM TO STORAGE
-        TodoStorage.writeItem(t[index]);
+        // WRITE ITEM TO STORAGE - WRITE CODE HERE
+        
 
     };   
     const onDelete = (id) => {   
@@ -79,12 +79,10 @@ export default function TodoList() {
         let index = t.findIndex((item => item.id == id));
         [removed_t] = t.splice(index, 1);
         console.log(removed_t);
-        setTodos(t);        
-
+        setTodos(t);                
         
+        // REMOVE AN ITEM FROM STORAGE - WRITE CODE HERE
         
-        // WRITE ITEM TO STORAGE
-        TodoStorage.removeItem(removed_t);
     };  
 
 
