@@ -4,7 +4,9 @@ const STORAGE_KEY = "@todos"; //เปลี่ยนแค่ KEY
 const readItems = async () => {
   try {
     let string_value = await AsyncStorage.getItem(STORAGE_KEY);
+    // console.log("S:", string_value);
     let items = string_value != null ? JSON.parse(string_value) : [];
+    // console.log("items:", items);
     return items;
   } catch (error) {
     console.log(error);

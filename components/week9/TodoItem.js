@@ -12,13 +12,13 @@ export default function TodoItem(props) {
                 paddingHorizontal : 25,
                 paddingVertical : 10,
             }}>
-            <TouchableOpacity style={{  flex : 2 }} onPress={()=>props.onCheck(props.item._id) }>
+            <TouchableOpacity style={{  flex : 2 }} onPress={()=>props.onCheck(props.item.id) }>
                 <FontAwesome name={ props.item.completed ? "check-square" : "square-o" } size={23} />                               
             </TouchableOpacity>
             <View style={{ flex: 12 }}>                                  
-                <TextInput value={props.item.title} placeholder="What's in your mind? " onChangeText={(new_title) => props.onUpdate(new_title, props.item._id) }  />                                  
+                <TextInput value={props.item.title} placeholder="What's in your mind? " onChangeText={(new_title) => props.onUpdate(new_title, props.item.id) }  />                                  
             </View>
-            <TouchableOpacity  style={{  flex : 1 }} onPress={()=>props.onDelete(props.item._id) } >
+            <TouchableOpacity  style={{  flex : 1 }} onPress={()=>props.onDelete(props.item.id) } >
                 <FontAwesome name="trash" size={23} />
             </TouchableOpacity>
         </View>             

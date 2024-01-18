@@ -1,19 +1,38 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, FlatList , TouchableOpacity  } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
+import TodoItem from '../../components/week9/TodoItem';
+import TodoStorage from '../../storages/TodoStorage';
+// import { useNavigation } from '@react-navigation/native';
 
 export default function TodoList() {
-    const navigation = useNaviation();
+    // const navigation = useNavigation();
     const [todos, setTodos] = useState(
         [
-            { _id: '1', completed: false, title: "exercise @ 7.00" },
-            { _id: '2', completed: false, title: "meeting @ 9.00" },
-            { _id: '3', completed: false, title: "go to cinema @ 19.00" },
+            // { id: '1', completed: false, title: "exercise @ 7.00" },
+            // { id: '2', completed: false, title: "meeting @ 9.00" },
+            // { id: '3', completed: false, title: "go to cinema @ 19.00" },
         ]
     );
+
+    console.log("TODOS:", todos);
+
+    const onLoad = async () => {
+        // READ ITEM FROM STORAGE
+        let data = await TodoStorage.readItems();
+        // console.log("data:", data);
+
+        // SET STATE
+        setTodos(data);
+    };
+
+    useEffect(()=>{
+        onLoad();
+    },[]);
+
     const onCreate = () => {
         let new_data = {
-            _id : '_' + Math.random().toString(36).substr(2, 9), //RANDOM NUMBER
+            id : '_' + Math.random().toString(36).substr(2, 9), //RANDOM NUMBER
             title : "", //Empty String
             completed : false,
         };
@@ -23,30 +42,49 @@ export default function TodoList() {
         t.push(new_data);     
         //UPDATE STATE
         setTodos(t);               
+
+        // WRITE ITEM TO STORAGE
+        TodoStorage.writeItem(new_data);
     };     
-    const onUpdate = (new_title, _id) => {   
+    const onUpdate = (new_title, id) => {   
         //CLONE ARRAY FIRST
         let t = [...todos];
         //Find index of specific object using findIndex method.   
-        let index = t.findIndex((item => item._id == _id));
+        let index = t.findIndex((item => item.id == id));
         //Update object's name property.
+        console.log("t:", t[index],id);
         t[index].title = new_title;
         //UPDATE STATE
         setTodos(t);
+        
+        // WRITE ITEM TO STORAGE
+        TodoStorage.writeItem(t[index]);
     }; 
-    const onCheck = (_id) => {
+    const onCheck = (id) => {
         let t = [...todos];
-        let index = t.findIndex((item => item._id == _id));
+        let index = t.findIndex((item => item.id == id));
         //SET INVERSE VALUE BOOLEAN
         t[index].completed = ! t[index].completed;
         setTodos(t);
+
+        
+        
+        // WRITE ITEM TO STORAGE
+        TodoStorage.writeItem(t[index]);
+
     };   
-    const onDelete = (_id) => {   
+    const onDelete = (id) => {   
         //CLONE ARRAY FIRST
         let t = [...todos];
-        let index = t.findIndex((item => item._id == _id));
-        t.splice(index, 1);
+        let index = t.findIndex((item => item.id == id));
+        [removed_t] = t.splice(index, 1);
+        console.log(removed_t);
         setTodos(t);        
+
+        
+        
+        // WRITE ITEM TO STORAGE
+        TodoStorage.removeItem(removed_t);
     };  
 
 
@@ -55,7 +93,7 @@ export default function TodoList() {
             <FlatList
                 style={{ marginTop: 15 }}
                 data={todos}
-                keyExtractor={item => item._id}
+                keyExtractor={item => item.id}
                 renderItem={({ item }) => (
                     // <Text>{item.title}</Text>
                     <TodoItem item={item} onUpdate={onUpdate} onCheck={onCheck} onDelete={onDelete} />
