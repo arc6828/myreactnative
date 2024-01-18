@@ -26,9 +26,7 @@ export default function TodoList() {
 
     };
 
-    useEffect(()=>{
-        onLoad();
-    },[]);
+    useEffect(()=>{ onLoad(); },[]);
 
     const onCreate = () => {
         let new_data = {

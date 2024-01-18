@@ -17,7 +17,7 @@ export default function BookForm() {
   const navigation = useNavigation();
   useLayoutEffect(() => { navigation.setOptions({ title: item ? "edit" : "create" }); }, [navigation]);
 
-  const onLoad = async()=>{
+  const onLoad = async () => {
     if (item) {
       let book = await BookStorage.readItemDetail(item);
       // let book = await BookLaravel.getItemDetail(item);      
@@ -27,9 +27,7 @@ export default function BookForm() {
       setImage(book.image);
     }
   };
-  useEffect(() => {
-    onLoad();
-  }, []);
+  useEffect(() => { onLoad(); }, []);
 
   const saveBook = async () => {
     //A NEW ITEM

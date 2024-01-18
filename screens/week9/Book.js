@@ -6,12 +6,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import BookStorage from "../../storages/BookStorage";
 import BookLaravel from "../../services/BookLaravel";
 
-export default function Book() {
-    const [products, setProducts] = useState([
-        { id: 1, name: "พัฒนา Application ด้วย React และ React Native", price: 330, image: "https://raw.githubusercontent.com/arc6828/myreactnative/master/assets/week9/book-1.jpg", },
-        { id: 2, name: "พัฒนาเว็บแอพพลิเคชันด้วย Firebase ร่วมกับ React", price: 229, image: "https://raw.githubusercontent.com/arc6828/myreactnative/master/assets/week9/book-2.jpg", },
-        { id: 3, name: "พัฒนา Web Apps ด้วย React Bootstrap + Redux", price: 349, image: "https://raw.githubusercontent.com/arc6828/myreactnative/master/assets/week9/book-3.jpg", },
-    ]);
+export default function Book() {    
     const navigation = useNavigation();
     //TOP RIGHT MENU
     useLayoutEffect(() => {
@@ -26,6 +21,12 @@ export default function Book() {
             ),
         });
     }, [navigation]);
+
+    const [products, setProducts] = useState([
+        { id: 1, name: "พัฒนา Application ด้วย React และ React Native", price: 330, image: "https://raw.githubusercontent.com/arc6828/myreactnative/master/assets/week9/book-1.jpg", },
+        { id: 2, name: "พัฒนาเว็บแอพพลิเคชันด้วย Firebase ร่วมกับ React", price: 229, image: "https://raw.githubusercontent.com/arc6828/myreactnative/master/assets/week9/book-2.jpg", },
+        { id: 3, name: "พัฒนา Web Apps ด้วย React Bootstrap + Redux", price: 349, image: "https://raw.githubusercontent.com/arc6828/myreactnative/master/assets/week9/book-3.jpg", },
+    ]);
 
     const loadBooks = async () => {
         setRefresh(true);

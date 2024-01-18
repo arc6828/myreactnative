@@ -33,24 +33,13 @@ export default function BookDetail() {
         navigation.navigate("Book");
     };
 
-    const onLoad = async()=>{
+    const onLoad = async () => {
         // let b = await BookStorage.readItemDetail(item);
         let b = await BookLaravel.getItemDetail(item);
         setBook(b);
-      };
+    };
 
-    useEffect(() => {
-        onLoad();
-    }, []);
-
-
-
-
-
-
-
-
-
+    useEffect(() => { onLoad(); }, []);
 
     //CONFIG HEADER BAR
     const navigation = useNavigation();
@@ -85,14 +74,14 @@ export default function BookDetail() {
                 <ImageViewer imageUrls={[{ url: book.image, props: {} }]}
                     enableSwipeDown={true}
                     onCancel={() => { console.log("SwipeDown"); setModalVisible(false); }}
-                    onSave={(uri)=>{ 
-                        File.download(uri); 
+                    onSave={(uri) => {
+                        File.download(uri);
                         // alert("Save"); 
                         ToastAndroid.showWithGravity(
                             "Saved",
                             ToastAndroid.SHORT,
                             ToastAndroid.BOTTOM
-                          );
+                        );
                     }}
                 />
             </Modal>
