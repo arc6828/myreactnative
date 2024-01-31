@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Image, Modal, Text, TouchableOpacity, View } from "react-native";
 import File from "../../helpers/File";
+import FileService from "../../services/FileService";
 
 export default function ImagePickerModal(props) {
     const onLoad = async()=>{
@@ -20,10 +21,21 @@ export default function ImagePickerModal(props) {
                 break;
         }
         // console.log(result);
-        if (!result.cancelled) {
+        if (!result.canceled) {
             console.log(result);
             // let new_uri = result.uri;
-            let new_uri = await File.save(result.uri);
+            
+            // SAVE TO LOCAL
+            // let new_uri = await File.save(result.assets[0].uri);
+
+            // SAVE TO SERVER
+            let new_uri = "";
+            let data = await FileService.upload({"image" : result.assets[0].uri});
+            if(data){
+                new_uri = data.uri;   
+            }
+
+            // set state
             props.setImage(new_uri);
         }
     };

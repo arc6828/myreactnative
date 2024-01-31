@@ -34,8 +34,8 @@ export default function BookDetail() {
     };
 
     const onLoad = async () => {
-        // let b = await BookStorage.readItemDetail(item);
-        let b = await BookLaravel.getItemDetail(item);
+        let b = await BookStorage.readItemDetail(item);
+        // let b = await BookLaravel.getItemDetail(item);
         setBook(b);
     };
 
@@ -62,16 +62,16 @@ export default function BookDetail() {
         <View style={{ backgroundColor: "white", padding: 20, flex: 1 }}>
             <TouchableOpacity onPress={() => { setModalVisible(true); }} >
                 <View style={{ flexDirection: "row" }}>
-                    <Image style={{ flex: 1, resizeMode: "contain", aspectRatio: 1 / 1 }} source={{ uri: book.image }} />
+                    <Image style={{ flex: 1, resizeMode: "contain", aspectRatio: 1 / 1 }} source={{ uri: book?book.image:"" }} />
                 </View>
             </TouchableOpacity>
-            <Text style={{ fontSize: 20, height: 70, marginVertical: 10 }}> {book.name} </Text>
+            <Text style={{ fontSize: 20, height: 70, marginVertical: 10 }}> {book?book.name:""} </Text>
             <View style={{ flexDirection: "row" }}>
-                <Text style={{ color: "green", fontSize: 20 }}>{book.price}</Text>
+                <Text style={{ color: "green", fontSize: 20 }}>{book?book.price:""}</Text>
                 <Text style={{ paddingTop: 6 }}> บาท</Text>
             </View>
             <Modal visible={modalVisible} transparent={true} onRequestClose={() => { setModalVisible(false); }} >
-                <ImageViewer imageUrls={[{ url: book.image, props: {} }]}
+                <ImageViewer imageUrls={[{ url: book?book.image:"", props: {} }]}
                     enableSwipeDown={true}
                     onCancel={() => { console.log("SwipeDown"); setModalVisible(false); }}
                     onSave={(uri) => {
