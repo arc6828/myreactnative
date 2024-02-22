@@ -4,9 +4,10 @@ import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import BookStorage from "../../storages/BookStorage";
-import BookLaravel from "../../services/BookLaravel";
+// import BookLaravel from "../../services/BookLaravel";
 import File from "../../helpers/File";
 import ImageViewer from 'react-native-image-zoom-viewer';
+import BookService from "../../services/BookService";
 
 export default function BookDetail() {
     const route = useRoute();
@@ -25,21 +26,21 @@ export default function BookDetail() {
         );
     };
 
-    const deleteBook = async () => {
-        //REMOVE BOOK
-        // await BookStorage.removeItem(item);
-        await BookLaravel.destroyItem(item);
-        //REDIRECT TO
-        navigation.navigate("Book");
-    };
+const deleteBook = async () => {
+    //REMOVE BOOK
+    // await BookStorage.removeItem(item);
+    await BookService.destroyItem(item);
+    //REDIRECT TO
+    navigation.navigate("Book");
+};
 
-    const onLoad = async () => {
-        let b = await BookStorage.readItemDetail(item);
-        // let b = await BookLaravel.getItemDetail(item);
-        setBook(b);
-    };
+const onLoad = async () => {
+    // let b = await BookStorage.readItemDetail(item);
+    let b = await BookService.getItemDetail(item);
+    setBook(b);
+};
 
-    useEffect(() => { onLoad(); }, []);
+useEffect(() => { onLoad(); }, []);
 
     //CONFIG HEADER BAR
     const navigation = useNavigation();

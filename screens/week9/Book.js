@@ -4,7 +4,8 @@ import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import BookStorage from "../../storages/BookStorage";
-import BookLaravel from "../../services/BookLaravel";
+import BookService from "../../services/BookService";
+// import BookLaravel from "../../services/BookLaravel";
 
 export default function Book() {    
     const navigation = useNavigation();
@@ -30,8 +31,8 @@ export default function Book() {
 
     const loadBooks = async () => {
         setRefresh(true);
-        let products = await BookStorage.readItems();
-        // let products = await BookLaravel.getItems();
+        // let products = await BookStorage.readItems();
+        let products = await BookService.getItems();
         setProducts(products);
         setRefresh(false);
     };
