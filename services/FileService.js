@@ -1,12 +1,6 @@
-// const url_endpoint = "http://localhost/mylaravel8/public/api/book";
-// const url_endpoint = "http://192.168.1.157/mylaravel8/public/api/book";
-// const url_endpoint = "https://www.ckartisan.com/api/file";
-// const url_endpoint = "http://192.168.1.17:8000/api/file";
-// const url_endpoint = "http://localhost:8000/api/file";
 // const url_endpoint = "http://192.168.1.17:8000/api/file";
 const url_endpoint = "https://www.ckartisan.com/api/file";
-// import { APP_URL } from "@env";
-// const url_endpoint = APP_URL+"/api/book";
+
 import * as mime from "mime";
 
 const upload = async (item) => {

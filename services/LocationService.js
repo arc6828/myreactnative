@@ -1,5 +1,5 @@
-// const url_endpoint = "http://172.16.94.92:8000/api/book";
-const url_endpoint = "https://ckartisan.com/api/book";
+// const url_endpoint = "http://172.16.94.92:8000/api/location";
+const url_endpoint = "https://ckartisan.com/api/location";
 
 const getItems = async () => {
   try {
@@ -67,3 +67,4 @@ const destroyItem = async (item) => {
 };
 
 export default { getItems, getItemDetail , storeItem , updateItem , destroyItem};
+
