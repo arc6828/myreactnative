@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import UserTokenStorage from "../storages/UserTokenStorage";
-const AuthContext = React.createContext({});
+const AuthContext = createContext({});
 
 const AuthContextProvider = (props) => {
     const [userToken, setUserToken] = useState("");
@@ -12,10 +12,7 @@ const AuthContextProvider = (props) => {
         setUserToken(tk);
     };
 
-    useEffect(()=>{
-        onLoad();
-      },[]);
-    
+    useEffect(()=>{onLoad();},[]);    
 
     return (
         <AuthContext.Provider value={{ userToken, setUserToken, user, setUser, loading, setLoading }}>

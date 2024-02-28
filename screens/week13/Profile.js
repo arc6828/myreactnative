@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Button, Text, View } from "react-native";
 import { AuthContext } from "../../hooks/AuthContextProvider";
-import AuthLaravel from "../../services/AuthLaravel";
+// import AuthLaravel from "../../services/AuthLaravel";
 import UserTokenStorage from "../../storages/UserTokenStorage";
 
 import { FontAwesome } from "@expo/vector-icons";
+import AuthService from "../../services/AuthService";
 
 
 export default function Profile() {
@@ -12,13 +13,12 @@ export default function Profile() {
     const [user, setUser] = useState(null);
 
     const onLoad = async ()=> {
-        let u = await AuthLaravel.getUser(userToken);
+        // let u = await AuthLaravel.getUser(userToken);
+        let u = await AuthService.getUser("9ZSWgmg0olutxyOlvT3yNIp4ObOLY5RCqu2C6G2O");
         setUser(u);
     };
 
-    useEffect(async () => {
-        onLoad();
-    }, []);
+    useEffect(() => { onLoad(); }, [userToken]);
 
     const onLogout = async () => {
         setUserToken("");

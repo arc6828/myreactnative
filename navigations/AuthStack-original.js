@@ -8,7 +8,7 @@ import Profile from "../screens/week13/Profile";
 const Stack = createStackNavigator();
 
 export default function AuthStack() {
-    const userToken = "eD1rqVzsyOnFnVnBqE51Gpo3LhoELoZODlOdysBZ";
+    const userToken = "";
 
     if (userToken) {
         return (

@@ -2,8 +2,9 @@ import { useNavigation } from "@react-navigation/native";
 import React, { useState, useContext } from "react";
 import { View, Text, Button, TextInput, TouchableOpacity } from "react-native";
 import { AuthContext } from "../../hooks/AuthContextProvider";
-import AuthLaravel from "../../services/AuthLaravel";
+// import AuthLaravel from "../../services/AuthLaravel";
 import UserTokenStorage from "../../storages/UserTokenStorage";
+import AuthService from "../../services/AuthService";
 
 export default function Login() {
     const navigation = useNavigation();
@@ -12,18 +13,17 @@ export default function Login() {
     const [message, setMessage] = useState("");
     const { userToken, setUserToken } = useContext(AuthContext);
 
-
     const onLogin = async () => {
         let item = {
             email: email,
             password: password,
             device_name: "test", //ควรดึงข้อมูลจากอุปกรณ์
         };
-        let tk = await AuthLaravel.login(item);
-        if (tk) {
-            console.log(tk);
-            setUserToken(tk);
-            UserTokenStorage.writeItem(tk);
+        let token = await AuthService.login(item);
+        if (token) {
+            console.log(token);
+            setUserToken(token);
+            UserTokenStorage.writeItem(token);
         } else {
             console.log("username / password are not correct!!!");
         }

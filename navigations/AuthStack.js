@@ -10,7 +10,7 @@ const Stack = createStackNavigator();
 
 export default function AuthStack() {
     const {userToken, setUserToken} = useContext(AuthContext);
-    // const userToken = "eD1rqVzsyOnFnVnBqE51Gpo3LhoELoZODlOdysBZ";
+    // const userToken = "9ZSWgmg0olutxyOlvT3yNIp4ObOLY5RCqu2C6G2O";
 
     if (userToken) {
         return (
