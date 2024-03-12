@@ -48,7 +48,8 @@ const FlatListExample = () => {
         data={posts}
         renderItem={({ item }) => <Item3 item={item} />}
         keyExtractor={item => item.id}
-        // numColumns={2}
+        numColumns={1}
+        horizontal={false}
       />
       <Button title='Next' />
     </View>
