@@ -12,12 +12,12 @@ const readItems = async () => {
 };
 
 //เพิ่มข้อมูลและอัพเดทข้อมูล ตาม item ที่ระบุไว้
-const writeItems = async (items) => {
+const writeItems = async (values) => {
   // console.log("PRESS!!");
   try {    
     //WRITE
-    string_value = JSON.stringify(items);
-    await AsyncStorage.setItem(STORAGE_KEY, string_value);
+    string_values = JSON.stringify(values);
+    await AsyncStorage.setItem(STORAGE_KEY, string_values);
   } catch (error) {
     console.log(error);
   }
