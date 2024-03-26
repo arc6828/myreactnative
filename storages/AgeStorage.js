@@ -11,9 +11,9 @@ const readItem = async () => {
     }
 };
 //เขียนข้อมูล
-const writeItem = async (item) => {
+const writeItem = async (value) => {
     try {
-        await AsyncStorage.setItem(STORAGE_KEY, item.toString());
+        await AsyncStorage.setItem(STORAGE_KEY, value.toString());
     } catch (error) {
         console.log(error);
     }
