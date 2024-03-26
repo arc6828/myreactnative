@@ -8,6 +8,7 @@ import BookForm from "../screens/week9/BookForm";
 import Location from "../screens/week11/Location";
 import LocationQuiz from "../screens/week11/LocationQuiz";
 import TodoList from "../screens/week9/TodoList";
+import YourHealth from "../screens/week9/YourHealth";
 
 const Stack = createStackNavigator();
 
@@ -21,6 +22,7 @@ export default function RootStack() {
             <Stack.Screen name="BookForm" component={BookForm} />
             <Stack.Screen name="TodoList" component={TodoList}   />
 
+            <Stack.Screen name="YourHealth" component={YourHealth} />
             <Stack.Screen name="Location" component={Location} />
             <Stack.Screen name="LocationQuiz" component={LocationQuiz} />
         </Stack.Navigator>
