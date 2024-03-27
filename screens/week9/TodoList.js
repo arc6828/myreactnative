@@ -34,10 +34,8 @@ export default function TodoList() {
             title : "", //Empty String
             completed : false,
         };
-        //CLONE ARRAY
-        let t = [...todos];
-        //APPEND NEW DATA INTO ARRAY
-        t.push(new_data);     
+        //CLONE ARRAY + APPEND NEW DATA INTO ARRAY
+        let t = [...todos, new_data];
         //UPDATE STATE
         setTodos(t);               
 
