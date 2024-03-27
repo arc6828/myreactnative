@@ -45,7 +45,6 @@ const removeItem = async (item) => {
 };
 //เพิ่มข้อมูลและอัพเดทข้อมูล ตาม item ที่ระบุไว้
 const writeItem = async (item) => {
-  // console.log("PRESS!!");
   try {
     //READ ALL
     let string_value = await AsyncStorage.getItem(STORAGE_KEY);
@@ -67,6 +66,16 @@ const writeItem = async (item) => {
   }
 };
 
-export default { readItems, readItemDetail, removeItem, writeItem };
+const writeItems = async (values) => {
+  try {    
+    //WRITE
+    string_values = JSON.stringify(values);
+    await AsyncStorage.setItem(STORAGE_KEY, string_values);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export default { readItems, readItemDetail, removeItem, writeItem , writeItems };
 
 
