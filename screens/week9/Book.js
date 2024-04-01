@@ -8,14 +8,13 @@ import { useNavigation } from "@react-navigation/native";
 
 export default function Book() {    
     const navigation = useNavigation();   
-    
-    const [refresh, setRefresh] = useState(false);
     const [products, setProducts] = useState([
         { id: 1, name: "พัฒนา Application ด้วย React และ React Native", price: 330, image: "https://raw.githubusercontent.com/arc6828/myreactnative/master/assets/week9/book-1.jpg", },
         { id: 2, name: "พัฒนาเว็บแอพพลิเคชันด้วย Firebase ร่วมกับ React", price: 229, image: "https://raw.githubusercontent.com/arc6828/myreactnative/master/assets/week9/book-2.jpg", },
         { id: 3, name: "พัฒนา Web Apps ด้วย React Bootstrap + Redux", price: 349, image: "https://raw.githubusercontent.com/arc6828/myreactnative/master/assets/week9/book-3.jpg", },
         { id: 4, name: "พัฒนาเว็บแอพพลิเคชันด้วย React Redux+Bootstrap", price: 229, image: "https://raw.githubusercontent.com/arc6828/myreactnative/master/assets/week9/book-4.jpg", },
-    ]);
+    ]);    
+    const [refresh, setRefresh] = useState(false);
 
     const loadBooks = async () => {
         // let products = await BookStorage.readItems();
@@ -34,7 +33,10 @@ export default function Book() {
     }, [navigation]);
 
     const BookItem = ({ item, index })=>(
-        <TouchableOpacity onPress={() => { navigation.navigate("BookDetail", { "id": item.id }); }} style={{ backgroundColor: "white", margin: 7, flex: 1, elevation: 5, }} >
+        <TouchableOpacity 
+            onPress={() => { navigation.navigate("BookDetail", { "id": item.id }); }} 
+            style={{ backgroundColor: "white", margin: 7, flex: 1, elevation: 5, }} 
+            >
             <View style={{ flexDirection: "row" }}>
                 <Image style={{ flex: 1, resizeMode: "cover", aspectRatio: 1 / 1 }} source={{ uri: item.image }} />
             </View>
