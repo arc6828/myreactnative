@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Alert, Image, Text, TouchableOpacity, View } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 
 export default function BookDetail() {
     const navigation = useNavigation();
@@ -34,17 +34,18 @@ export default function BookDetail() {
                 >
                 <FontAwesome name="edit" size={30} />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => { confirmDelete(); }}>
+            <TouchableOpacity 
+                // onPress={() => { confirmDelete(); }}
+                >
                 <FontAwesome name="trash" size={30} />
             </TouchableOpacity>
         </View>
     );
     const onLoad = async () => {      
-        navigation.setOptions({ headerRight: () => ( <TopRightMenu /> ) });
-               
+        // navigation.setOptions({ headerRight: () => ( <TopRightMenu /> ) });               
     };
     useEffect(() => { onLoad(); }, []);
-
+    // CONDITIONAL RENDERING
     if(Object.keys(book).length == 0){ return <View></View> }
 
     return (

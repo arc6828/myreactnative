@@ -45,16 +45,20 @@ export default function BookDetail() {
     // TOP RIGHT MENU
     const TopRightMenu = ()=>(
         <View style={{ flexDirection: "row", width: 100, justifyContent: "space-around" }}>
-            <TouchableOpacity onPress={() => { navigation.navigate("BookForm", { "id": book.id }); }}>
+            <TouchableOpacity 
+                onPress={() => { navigation.navigate("BookForm", { "id": book.id }); }}
+                >
                 <FontAwesome name="edit" size={30} />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => { confirmDelete(); }}>
+            <TouchableOpacity 
+                onPress={() => { confirmDelete(); }}
+                >
                 <FontAwesome name="trash" size={30} />
             </TouchableOpacity>
         </View>
     );
     const onLoad = async () => {      
-        // navigation.setOptions({ headerRight: () => ( <TopRightMenu /> ) });
+        navigation.setOptions({ headerRight: () => ( <TopRightMenu /> ) });
        
         // const route = useRoute();    
         // const { item } = route.params;
