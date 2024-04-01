@@ -10,12 +10,38 @@ import ImageViewer from 'react-native-image-zoom-viewer';
 import BookService from "../../services/BookService";
 
 export default function BookDetail() {
-    const route = useRoute();
-    const { item } = route.params;
-    const [book, setBook] = useState(item);
-    const [modalVisible, setModalVisible] = useState(false);
-    //DELETE POPUP
-    const confirmDelete = () => {
+    const navigation = useNavigation();
+    const route = useRoute();   
+    const [book, setBook] = useState({
+        "id":"xxxx",
+        "name":"Example Book",
+        "price":"100",
+        "image":"https://picsum.photos/300",
+    });
+    const [modalVisible, setModalVisible] = useState(false);      
+
+    const onLoad = async () => {             
+        // const route = useRoute();    
+        // const { item } = route.params;
+        // // let b = await BookStorage.readItemDetail(item);
+        // let b = await BookService.getItemDetail(item);
+        // setBook(b);
+    };
+
+    useEffect(() => { onLoad(); }, []);
+
+    if(Object.keys(book).length == 0){ return <View></View> }
+
+    //DELETE POPUP    
+    const deleteBook = async () => {
+        //REMOVE BOOK
+        // await BookStorage.removeItem(item);
+        
+        await BookService.destroyItem(item);
+        //REDIRECT TO
+        navigation.navigate("Book");
+    };
+    const confirmDelete = () => {    
         return Alert.alert(
             "ยืนยันการลบ?",
             "คุณแน่ใจหรือไม่ว่าจะลบรายการนี้?",
@@ -26,52 +52,38 @@ export default function BookDetail() {
         );
     };
 
-const deleteBook = async () => {
-    //REMOVE BOOK
-    // await BookStorage.removeItem(item);
-    await BookService.destroyItem(item);
-    //REDIRECT TO
-    navigation.navigate("Book");
-};
-
-const onLoad = async () => {
-    // let b = await BookStorage.readItemDetail(item);
-    let b = await BookService.getItemDetail(item);
-    setBook(b);
-};
-
-useEffect(() => { onLoad(); }, []);
-
-    //CONFIG HEADER BAR
-    const navigation = useNavigation();
+    // TOP RIGHT MENU
+    const TopRightMenu = ()=>(
+        <View style={{ flexDirection: "row", width: 100, justifyContent: "space-around" }}>
+            <TouchableOpacity onPress={() => { navigation.navigate("BookForm", { "id": book.id }); }}>
+                <FontAwesome name="edit" size={30} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => { confirmDelete(); }}>
+                <FontAwesome name="trash" size={30} />
+            </TouchableOpacity>
+        </View>
+    );
     useLayoutEffect(() => {
-        navigation.setOptions({
-            headerRight: () => (
-                <View style={{ flexDirection: "row", width: 100, justifyContent: "space-around" }}>
-                    <TouchableOpacity onPress={() => { navigation.navigate("BookForm", { "item": item }); }}>
-                        <FontAwesome name="edit" size={30} />
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => { confirmDelete(); }}>
-                        <FontAwesome name="trash" size={30} />
-                    </TouchableOpacity>
-                </View>
-            ),
-        });
+        navigation.setOptions({ headerRight: () => ( <TopRightMenu /> ) });
     }, [navigation]);
 
+
     return (
-        <View style={{ backgroundColor: "white", padding: 20, flex: 1 }}>
+        <View style={{ backgroundColor: "white", flex: 1 }}>
             <TouchableOpacity onPress={() => { setModalVisible(true); }} >
                 <View style={{ flexDirection: "row" }}>
-                    <Image style={{ flex: 1, resizeMode: "contain", aspectRatio: 1 / 1 }} source={{ uri: book?book.image:"" }} />
+                    <Image style={{ flex: 1, resizeMode: "contain", aspectRatio: 1 / 1 }} source={{ uri: book.image }} />
                 </View>
             </TouchableOpacity>
-            <Text style={{ fontSize: 20, height: 70, marginVertical: 10 }}> {book?book.name:""} </Text>
-            <View style={{ flexDirection: "row" }}>
-                <Text style={{ color: "green", fontSize: 20 }}>{book?book.price:""}</Text>
-                <Text style={{ paddingTop: 6 }}> บาท</Text>
+            <View style={{ padding: 10 }}>
+                <Text style={{ fontSize: 20, marginVertical: 10 }}> {book.name} </Text>
+                <View style={{ flexDirection: "row" }}>
+                    <Text style={{ color: "green", fontSize: 20 }}>{book.price}</Text>
+                    <Text style={{ paddingTop: 6 }}> บาท</Text>
+                </View>
             </View>
-            <Modal visible={modalVisible} transparent={true} onRequestClose={() => { setModalVisible(false); }} >
+            
+            {/* <Modal visible={modalVisible} transparent={true} onRequestClose={() => { setModalVisible(false); }} >
                 <ImageViewer imageUrls={[{ url: book?book.image:"", props: {} }]}
                     enableSwipeDown={true}
                     onCancel={() => { console.log("SwipeDown"); setModalVisible(false); }}
@@ -85,7 +97,7 @@ useEffect(() => { onLoad(); }, []);
                         );
                     }}
                 />
-            </Modal>
+            </Modal> */}
         </View>
     );
 }

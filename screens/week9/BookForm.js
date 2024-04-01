@@ -9,54 +9,54 @@ import {
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation, useRoute } from "@react-navigation/native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import BookStorage from "../../storages/BookStorage";
+// import AsyncStorage from "@react-native-async-storage/async-storage";
+// import BookStorage from "../../storages/BookStorage";
 // import BookLaravel from "../../services/BookLaravel";
-import UploadArea from "../../components/week12/UploadArea";
-import BookService from "../../services/BookService";
+// import UploadArea from "../../components/week12/UploadArea";
+// import BookService from "../../services/BookService";
 
-export default function BookForm() {
-  const [id, setId] = useState(
-    "_" + Math.random().toString(36).substring(2, 9)
-  );
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
-  const [image, setImage] = useState("");
-  const route = useRoute();
-  const { item } = route.params;
+export default function BookForm() {  
   const navigation = useNavigation();
-  useLayoutEffect(() => {
-    navigation.setOptions({ title: item ? "edit" : "create" });
-  }, [navigation]);
+  const route = useRoute();
+  // RANDOM ID
+  const [id, setId] = useState( "_" + Math.random().toString(36).substring(2, 9) );
+  const [name, setName] = useState("Example Book");
+  const [price, setPrice] = useState("100");
+  const [image, setImage] = useState("https://picsum.photos/300");
+  
 
   const onLoad = async () => {
-    if (item) {
+    const { pid } = route.params;
+    if (pid) {
       // let book = await BookStorage.readItemDetail(item);
-      let book = await BookService.getItemDetail(item);
-      setId(book.id);
-      setName(book.name);
-      setPrice(book.price.toString());
-      setImage(book.image);
+      // let book = await BookService.getItemDetail(pid);
+      // setId(book.id);
+      // setName(book.name);
+      // setPrice(book.price.toString());
+      // setImage(book.image);
     }
+    
   };
-  useEffect(() => {
-    onLoad();
-  }, []);
+  useEffect(() => { onLoad();  }, []);
 
   const saveBook = async () => {
     //A NEW ITEM
     let new_data = { id: id, name: name, price: price, image: image };
     //SAVE
     // await BookStorage.writeItem(new_data);
-    if(item){
-      await BookService.updateItem(new_data);
-    }else{
-      await BookService.storeItem(new_data);
-    }
+    // if(item){
+    //   await BookService.updateItem(new_data);
+    // }else{
+    //   await BookService.storeItem(new_data);
+    // }
 
     //REDIRECT TO
     navigation.navigate("Book");
   };
+
+  // useLayoutEffect(() => {
+  //   navigation.setOptions({ title: pid ? "edit" : "create" });
+  // }, [navigation]);
 
   return (
     <KeyboardAvoidingView style={{ flex: 1, padding: 20 }}>
@@ -80,7 +80,7 @@ export default function BookForm() {
           onChangeText={(text) => setImage(text)}
         />
 
-        <UploadArea image={image} setImage={setImage} />
+        {/* <UploadArea image={image} setImage={setImage} /> */}
       </ScrollView>
       <Button title="SAVE" color="tomato" onPress={saveBook} />
     </KeyboardAvoidingView>
