@@ -19,15 +19,15 @@ export default function BookForm() {
   const navigation = useNavigation();
   const route = useRoute();
   // RANDOM ID
-  const [id, setId] = useState( "_" + Math.random().toString(36).substring(2, 9) );
+  const [key, setKey] = useState( "_" + Math.random().toString(36).substring(2, 9) );
   const [name, setName] = useState("Example Book");
   const [price, setPrice] = useState("100");
   const [image, setImage] = useState("https://picsum.photos/300");
   
 
   const onLoad = async () => {
-    const { pid } = route.params;
-    if (pid) {
+    const { id } = route.params;
+    if (id) {
       // let book = await BookStorage.readItemDetail(item);
       // let book = await BookService.getItemDetail(pid);
       // setId(book.id);
@@ -35,13 +35,14 @@ export default function BookForm() {
       // setPrice(book.price.toString());
       // setImage(book.image);
     }
+    navigation.setOptions({ title: (id ? "edit" : "create") });
     
   };
   useEffect(() => { onLoad();  }, []);
 
   const saveBook = async () => {
     //A NEW ITEM
-    let new_data = { id: id, name: name, price: price, image: image };
+    let new_data = { id: key, name: name, price: price, image: image };
     //SAVE
     // await BookStorage.writeItem(new_data);
     // if(item){
