@@ -8,14 +8,17 @@ export default function BookForm() {
   const route = useRoute();
   // RANDOM ID
   const [key, setKey] = useState( "_" + Math.random().toString(36).substring(2, 9) );
-  const [name, setName] = useState("Example Book");
-  const [price, setPrice] = useState("100");
-  const [image, setImage] = useState("https://picsum.photos/300");
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
+  const [image, setImage] = useState("");
   
   const onLoad = async () => {
     const { id } = route.params;
     if (id) {
-      
+      setKey(id);
+      setName("Example Book");
+      setPrice("100");
+      setImage("https://picsum.photos/300");
     }
     navigation.setOptions({ title: (id ? "edit" : "create") });    
   };

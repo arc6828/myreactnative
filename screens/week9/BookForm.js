@@ -20,9 +20,9 @@ export default function BookForm() {
   const route = useRoute();
   // RANDOM ID
   const [key, setKey] = useState( "_" + Math.random().toString(36).substring(2, 9) );
-  const [name, setName] = useState("Example Book");
-  const [price, setPrice] = useState("100");
-  const [image, setImage] = useState("https://picsum.photos/300");
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
+  const [image, setImage] = useState("");
   
 
   const onLoad = async () => {
@@ -30,7 +30,7 @@ export default function BookForm() {
     if (id) {
       // let book = await BookStorage.readItemDetail(item);
       // let book = await BookService.getItemDetail(pid);
-      // setId(book.id);
+      // setKey(book.id);
       // setName(book.name);
       // setPrice(book.price.toString());
       // setImage(book.image);
