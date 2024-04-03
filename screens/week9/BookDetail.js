@@ -43,10 +43,10 @@ export default function BookDetail() {
     };
 
     // TOP RIGHT MENU
-    const TopRightMenu = ()=>(
+    const TopRightMenu = ({id})=>(
         <View style={{ flexDirection: "row", width: 100, justifyContent: "space-around" }}>
             <TouchableOpacity 
-                onPress={() => { navigation.navigate("BookForm", { "id": book.id }); }}
+                onPress={() => { navigation.navigate("BookForm", { "id": id }); }}
                 >
                 <FontAwesome name="edit" size={30} />
             </TouchableOpacity>
