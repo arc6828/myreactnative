@@ -58,13 +58,12 @@ export default function BookDetail() {
         </View>
     );
     const onLoad = async () => {      
-        navigation.setOptions({ headerRight: () => ( <TopRightMenu /> ) });
        
         // const route = useRoute();    
-        // const { item } = route.params;
-        // // let b = await BookStorage.readItemDetail(item);
-        // let b = await BookService.getItemDetail(item);
+        // const { id } = route.params;
+        // let b = await BookStorage.readItemDetail(id);
         // setBook(b);
+        navigation.setOptions({ headerRight: () => ( <TopRightMenu id="xxx" /> ) });
     };
     useEffect(() => { onLoad(); }, []);
 
