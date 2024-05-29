@@ -1,7 +1,8 @@
 // const url_endpoint = "http://192.168.1.17:8000/api/file";
 const url_endpoint = "https://www.ckartisan.com/api/file";
 
-import * as mime from "mime";
+// import * as mime from "mime";
+import mime from 'mime';
 
 const upload = async (item) => {
   try {
